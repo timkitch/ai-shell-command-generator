@@ -2,6 +2,7 @@ import sys
 import langchain
 from openai import OpenAI
 import os
+from langchain_integration import verify_langchain_openai
 
 def verify_python_version():
     print(f"Python version: {sys.version}")
@@ -30,5 +31,6 @@ if __name__ == "__main__":
     verify_python_version()
     verify_langchain()
     verify_openai_api()
+    verify_langchain_openai()
     
     print("All verifications passed successfully!")
