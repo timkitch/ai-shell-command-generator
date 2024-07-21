@@ -1,5 +1,6 @@
 import argparse
 import sys
+from query_processor import process_input, format_for_llm
 
 def get_shell_environment():
     """Prompt user to specify the shell environment."""
@@ -24,10 +25,14 @@ def main():
     if not args.task:
         args.task = get_task_description()
     
-    print(f"Shell environment: {args.shell}")
-    print(f"Task description: {args.task}")
-    
-    # Here you would add the logic to process the task based on the shell and description
+    try:
+        processed_input = process_input(args.shell, args.task)
+        llm_query = format_for_llm(processed_input)
+        print("Processed input:", processed_input)
+        print("Formatted LLM query:", llm_query)
+    except ValueError as e:
+        print(f"Error: {str(e)}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
