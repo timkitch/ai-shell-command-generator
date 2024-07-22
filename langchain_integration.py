@@ -5,7 +5,7 @@ from langchain_core.prompts import PromptTemplate
 def verify_langchain_openai():
     try:
         # Initialize ChatOpenAI with GPT-4 Turbo
-        chat_model = ChatOpenAI(model_name="gpt-4-1106-preview")
+        chat_model = ChatOpenAI(model_name="gpt-4o-mini")
 
         # Test the model with a simple query
         messages = [HumanMessage(content="Hello, GPT-4 Turbo via LangChain!")]

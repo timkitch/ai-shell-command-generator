@@ -8,7 +8,7 @@ This application is a CLI tool that generates shell commands based on natural la
 
 - Supports multiple shell environments (cmd, PowerShell, Bash)
 - Uses natural language processing to understand task descriptions
-- Generates shell commands using OpenAI's GPT-4 model
+- Generates shell commands using OpenAI's GPT-4o mini model
 - Colorized output for better readability
 - Option to copy generated commands to clipboard
 
@@ -16,7 +16,7 @@ This application is a CLI tool that generates shell commands based on natural la
 
 - Python 3.11+
 - LangChain for AI model integration
-- OpenAI's GPT-4 model
+- OpenAI's GPT-4o mini model (multimodal capabilities)
 - Colorama for terminal color output
 - Pyperclip for clipboard functionality
 

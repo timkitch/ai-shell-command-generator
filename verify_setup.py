@@ -16,7 +16,7 @@ def verify_openai_api():
     client = OpenAI()
     try:
         response = client.chat.completions.create(
-            model="gpt-4-turbo-preview",
+            model="gpt-4o-mini",
             messages=[{"role": "user", "content": "Hello, GPT-4 Turbo!"}],
             max_tokens=10
         )
