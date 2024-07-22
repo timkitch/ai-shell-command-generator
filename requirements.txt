@@ -1,0 +1,4 @@
+langchain==0.0.267
+openai==0.27.8
+pyperclip==1.8.2
+colorama==0.4.6
