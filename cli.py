@@ -5,9 +5,21 @@ from langchain_integration import get_shell_command
 from output_formatter import format_command_output
 
 def get_shell_environment():
-    """Prompt user to specify the shell environment."""
-    shell = input("Please specify your shell environment (e.g., bash, zsh, powershell): ").strip().lower()
-    return shell
+    """Prompt user to select the shell environment from a list of valid options."""
+    valid_shells = ["cmd", "powershell", "bash"]
+    print("Please select your shell environment:")
+    for i, shell in enumerate(valid_shells, 1):
+        print(f"{i}. {shell}")
+    
+    while True:
+        try:
+            choice = int(input("Enter the number of your choice: "))
+            if 1 <= choice <= len(valid_shells):
+                return valid_shells[choice - 1]
+            else:
+                print("Invalid choice. Please try again.")
+        except ValueError:
+            print("Please enter a valid number.")
 
 def get_task_description():
     """Prompt user to describe the task in natural language."""

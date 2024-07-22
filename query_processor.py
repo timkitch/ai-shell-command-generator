@@ -12,7 +12,7 @@ def process_input(shell, task):
     dict: A dictionary containing the processed inputs.
     """
     # Validate shell input
-    valid_shells = ['bash', 'zsh', 'powershell', 'cmd']
+    valid_shells = ['cmd', 'powershell', 'bash']
     if shell.lower() not in valid_shells:
         raise ValueError(f"Invalid shell. Please choose from {', '.join(valid_shells)}")
     
