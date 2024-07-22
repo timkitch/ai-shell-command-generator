@@ -40,8 +40,8 @@ This application is a CLI tool that generates shell commands based on natural la
    ```
 
 4. Set up your OpenAI API key:
-   - Copy `config-example.py` to `config.py`
-   - Replace the placeholder API key in `config.py` with your actual OpenAI API key
+   - Copy `.env-example` to `.env`
+   - Replace the placeholder API key in `.env` with your actual OpenAI API key
 
 ## Usage
 
@@ -86,6 +86,8 @@ To run tests and verify the setup:
    ```
    python verify_setup.py
    ```
+
+5. Ensure your `.env` file is properly configured with your OpenAI API key
 
 ## Contributing
 
