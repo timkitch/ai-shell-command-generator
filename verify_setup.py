@@ -1,6 +1,5 @@
 import sys
 from openai import OpenAI
-import os
 from dotenv import load_dotenv
 from langchain_integration import verify_langchain_openai
 
