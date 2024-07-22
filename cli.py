@@ -1,8 +1,14 @@
 import argparse
 import sys
+import pyperclip
 from query_processor import process_input, format_for_llm
 from langchain_integration import get_shell_command
 from output_formatter import format_command_output
+
+def copy_to_clipboard(text):
+    """Copy the given text to the clipboard and inform the user."""
+    pyperclip.copy(text)
+    print("Command copied to clipboard.")
 
 def get_shell_environment():
     """Prompt user to select the shell environment from a list of valid options."""
@@ -49,6 +55,11 @@ def main():
         generated_command = get_shell_command(processed_input['shell'], processed_input['task'])
         formatted_output = format_command_output(processed_input['shell'], processed_input['task'], generated_command)
         print(formatted_output)
+        
+        # Ask user if they want to copy the command
+        copy_choice = input("Would you like to copy the command to clipboard? (yes/no): ").strip().lower()
+        if copy_choice == 'yes':
+            copy_to_clipboard(generated_command)
     except ValueError as e:
         print(f"Error: {str(e)}")
         sys.exit(1)
