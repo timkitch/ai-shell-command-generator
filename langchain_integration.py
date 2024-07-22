@@ -1,6 +1,7 @@
 from langchain.llms import OpenAI
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage
+from langchain.prompts import PromptTemplate
 
 def verify_langchain_openai():
     try:
@@ -19,6 +20,35 @@ def verify_langchain_openai():
 
 def get_shell_command(shell, task):
     chat_model = ChatOpenAI(model_name="gpt-4-1106-preview")
-    messages = [HumanMessage(content=f"Generate a {shell} command to {task}")]
+    
+    prompt_template = PromptTemplate(
+        input_variables=["shell", "task"],
+        template="""Generate a {shell} command to {task}. 
+        Ensure the command is syntactically correct for the {shell} environment.
+        Return only the command, without any explanations or additional text."""
+    )
+    
+    prompt = prompt_template.format(shell=shell, task=task)
+    messages = [HumanMessage(content=prompt)]
     response = chat_model(messages)
-    return response.content
+    return response.content.strip()
+
+def test_command_generation():
+    test_cases = [
+        ("bash", "list all files", "ls -la"),
+        ("powershell", "get current directory", "Get-Location"),
+        ("cmd", "create a new directory named 'test'", "mkdir test"),
+    ]
+    
+    for shell, task, expected_output in test_cases:
+        generated_command = get_shell_command(shell, task)
+        print(f"Shell: {shell}")
+        print(f"Task: {task}")
+        print(f"Generated command: {generated_command}")
+        print(f"Expected output: {expected_output}")
+        print("Test passed" if generated_command.lower() == expected_output.lower() else "Test failed")
+        print("---")
+
+if __name__ == "__main__":
+    print("Running Command Generation Engine tests...")
+    test_command_generation()
