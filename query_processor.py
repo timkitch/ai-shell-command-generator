@@ -29,7 +29,7 @@ def process_input(shell, task):
 import re
 
 def clean_task_input(task):
-    """Clean the task input while preserving quoted search terms."""
+    """Clean the task input while preserving quoted search terms and hyphens."""
     # Remove leading/trailing whitespace
     cleaned = task.strip()
     
@@ -40,8 +40,8 @@ def clean_task_input(task):
     # Replace content within quotes temporarily
     cleaned = re.sub(r'"[^"]*"', preserve_quoted, cleaned)
     
-    # Clean the rest of the string
-    cleaned = re.sub(r'[^a-zA-Z0-9\s"]', '', cleaned)
+    # Clean the rest of the string, but preserve hyphens
+    cleaned = re.sub(r'[^a-zA-Z0-9\s"-]', '', cleaned)
     
     # Replace multiple spaces with a single space
     cleaned = re.sub(r'\s+', ' ', cleaned)
@@ -91,6 +91,14 @@ def run_tests():
         print("Test 4 passed")
     except Exception as e:
         print(f"Test 4 failed: {str(e)}")
+
+    # Test 5: Preserving hyphens and quoted content
+    try:
+        result = process_input("bash", 'search for "GPT-4o" and create-directory')
+        assert result == {"shell": "bash", "task": 'search for "GPT-4o" and create-directory'}, "Test 5 failed"
+        print("Test 5 passed")
+    except Exception as e:
+        print(f"Test 5 failed: {str(e)}")
 
 if __name__ == "__main__":
     run_tests()
