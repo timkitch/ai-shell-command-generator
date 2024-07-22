@@ -1,31 +1,35 @@
 import argparse
 import sys
 import pyperclip
+from colorama import init, Fore, Style
 from query_processor import process_input, format_for_llm
 from langchain_integration import get_shell_command
 from output_formatter import format_command_output
 
+# Initialize colorama
+init()
+
 def copy_to_clipboard(text):
     """Copy the given text to the clipboard and inform the user."""
     pyperclip.copy(text)
-    print("Command copied to clipboard.")
+    print(f"{Fore.GREEN}Command copied to clipboard.{Style.RESET_ALL}")
 
 def get_shell_environment():
     """Prompt user to select the shell environment from a list of valid options."""
     valid_shells = ["cmd", "powershell", "bash"]
-    print("Please select your shell environment:")
+    print(f"{Fore.CYAN}Please select your shell environment:{Style.RESET_ALL}")
     for i, shell in enumerate(valid_shells, 1):
-        print(f"{i}. {shell}")
+        print(f"{Fore.YELLOW}{i}. {shell}{Style.RESET_ALL}")
     
     while True:
         try:
-            choice = int(input("Enter the number of your choice: "))
+            choice = int(input(f"{Fore.GREEN}Enter the number of your choice: {Style.RESET_ALL}"))
             if 1 <= choice <= len(valid_shells):
                 return valid_shells[choice - 1]
             else:
-                print("Invalid choice. Please try again.")
+                print(f"{Fore.RED}Invalid choice. Please try again.{Style.RESET_ALL}")
         except ValueError:
-            print("Please enter a valid number.")
+            print(f"{Fore.RED}Please enter a valid number.{Style.RESET_ALL}")
 
 def get_task_description():
     """Prompt user to describe the task in natural language."""
@@ -61,10 +65,10 @@ def main():
         if copy_choice == 'yes':
             copy_to_clipboard(generated_command)
     except ValueError as e:
-        print(f"Error: {str(e)}")
+        print(f"{Fore.RED}Error: {str(e)}{Style.RESET_ALL}")
         sys.exit(1)
     except Exception as e:
-        print(f"An error occurred while processing the query: {str(e)}")
+        print(f"{Fore.RED}An error occurred while processing the query: {str(e)}{Style.RESET_ALL}")
         sys.exit(1)
 
 if __name__ == "__main__":

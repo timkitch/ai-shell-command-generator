@@ -1,6 +1,8 @@
+from colorama import Fore, Style
+
 def format_command_output(shell, task, command):
     """
-    Format the generated command in a user-friendly way.
+    Format the generated command in a user-friendly way with colors.
     
     Args:
     shell (str): The shell environment.
@@ -8,16 +10,16 @@ def format_command_output(shell, task, command):
     command (str): The generated command.
     
     Returns:
-    str: A formatted string containing the command output.
+    str: A formatted string containing the colored command output.
     """
-    border = "=" * 50
+    border = Fore.YELLOW + "=" * 50 + Style.RESET_ALL
     return f"""
 {border}
-Shell: {shell}
-Task: {task}
+{Fore.CYAN}Shell:{Style.RESET_ALL} {shell}
+{Fore.CYAN}Task:{Style.RESET_ALL} {task}
 
-Generated Command:
-{command}
+{Fore.GREEN}Generated Command:{Style.RESET_ALL}
+{Fore.WHITE}{command}{Style.RESET_ALL}
 {border}
 """
 
