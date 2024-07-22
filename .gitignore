@@ -21,6 +21,7 @@ Thumbs.db
 
 # Project specific
 config.py.secret
+config.py
 *.log
 
 # Dependency management
