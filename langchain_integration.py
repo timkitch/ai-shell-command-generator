@@ -1,6 +1,11 @@
 from langchain_community.chat_models import ChatOpenAI
 from langchain_core.messages import HumanMessage
 from langchain_core.prompts import PromptTemplate
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 def verify_langchain_openai():
     try:

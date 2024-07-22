@@ -1,7 +1,11 @@
 import sys
 from openai import OpenAI
 import os
+from dotenv import load_dotenv
 from langchain_integration import verify_langchain_openai
+
+# Load environment variables from .env file
+load_dotenv()
 
 def verify_python_version():
     print(f"Python version: {sys.version}")
