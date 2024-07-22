@@ -14,7 +14,7 @@ def verify_langchain_openai():
         print("LangChain integration with GPT-4 Turbo successful")
         print(f"Response: {response.content}")
     except Exception as e:
-        print(f"Error testing LangChain integration with GPT-4 Turbo: {e}")
+        print(f"Error testing LangChain integration with GPT-4o mini: {e}")
         raise
 
 def get_shell_command(shell, task):
