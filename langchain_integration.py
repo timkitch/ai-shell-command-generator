@@ -1,7 +1,6 @@
-from langchain.llms import OpenAI
-from langchain.chat_models import ChatOpenAI
-from langchain.schema import HumanMessage
-from langchain.prompts import PromptTemplate
+from langchain_community.chat_models import ChatOpenAI
+from langchain_core.messages import HumanMessage
+from langchain_core.prompts import PromptTemplate
 
 def verify_langchain_openai():
     try:

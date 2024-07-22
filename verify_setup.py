@@ -1,5 +1,4 @@
 import sys
-import langchain
 from openai import OpenAI
 import os
 from langchain_integration import verify_langchain_openai
@@ -9,7 +8,9 @@ def verify_python_version():
     assert sys.version_info >= (3, 11), "Python version should be 3.11 or higher"
 
 def verify_langchain():
+    import langchain
     print(f"LangChain version: {langchain.__version__}")
+    print("LangChain community package is installed and imported successfully.")
 
 def verify_openai_api():
     client = OpenAI()
