@@ -26,14 +26,26 @@ def process_input(shell, task):
         "task": cleaned_task
     }
 
+import re
+
 def clean_task_input(task):
-    """Clean the task input by removing extra whitespace and special characters."""
-    # Remove leading/trailing whitespace and convert to lowercase
-    cleaned = task.strip().lower()
-    # Remove special characters except spaces and alphanumeric
-    cleaned = re.sub(r'[^a-z0-9\s]', '', cleaned)
+    """Clean the task input while preserving quoted search terms."""
+    # Remove leading/trailing whitespace
+    cleaned = task.strip()
+    
+    # Function to preserve content within quotes
+    def preserve_quoted(match):
+        return match.group(0)
+    
+    # Replace content within quotes temporarily
+    cleaned = re.sub(r'"[^"]*"', preserve_quoted, cleaned)
+    
+    # Clean the rest of the string
+    cleaned = re.sub(r'[^a-zA-Z0-9\s"]', '', cleaned)
+    
     # Replace multiple spaces with a single space
     cleaned = re.sub(r'\s+', ' ', cleaned)
+    
     return cleaned
 
 def format_for_llm(processed_input):
@@ -46,7 +58,7 @@ def format_for_llm(processed_input):
     Returns:
     str: A formatted string for LLM query.
     """
-    return f"Generate a {processed_input['shell']} command to {processed_input['task']}"
+    return f"Generate a {processed_input['shell']} command to {processed_input['task']}. Preserve the exact case and special characters for any terms in quotes."
 
 # Basic tests
 def run_tests():
