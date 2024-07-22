@@ -25,13 +25,21 @@ def get_shell_command(shell, task):
         input_variables=["shell", "task"],
         template="""Generate a {shell} command to {task}. 
         Ensure the command is syntactically correct for the {shell} environment.
-        Return only the command, without any explanations or additional text."""
+        Return only the command, without any explanations, additional text, or code formatting."""
     )
     
     prompt = prompt_template.format(shell=shell, task=task)
     messages = [HumanMessage(content=prompt)]
     response = chat_model(messages)
-    return response.content.strip()
+    
+    # Clean up the response
+    cleaned_command = response.content.strip()
+    # Remove any markdown code block formatting if present
+    cleaned_command = cleaned_command.replace('```' + shell, '').replace('```', '').strip()
+    # Remove any leading shell prompt characters if present
+    cleaned_command = cleaned_command.lstrip('$ ').lstrip('> ').strip()
+    
+    return cleaned_command
 
 def test_command_generation():
     test_cases = [
