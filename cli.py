@@ -1,6 +1,7 @@
 import argparse
 import sys
 from query_processor import process_input, format_for_llm
+from langchain_integration import get_shell_command
 
 def get_shell_environment():
     """Prompt user to specify the shell environment."""
@@ -30,8 +31,16 @@ def main():
         llm_query = format_for_llm(processed_input)
         print("Processed input:", processed_input)
         print("Formatted LLM query:", llm_query)
+        
+        # Send query to LLM and get response
+        llm_response = get_shell_command(processed_input['shell'], processed_input['task'])
+        print("\nLLM Response:")
+        print(llm_response)
     except ValueError as e:
         print(f"Error: {str(e)}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"An error occurred while processing the query: {str(e)}")
         sys.exit(1)
 
 if __name__ == "__main__":
