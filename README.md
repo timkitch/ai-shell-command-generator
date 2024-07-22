@@ -24,7 +24,7 @@ This application is a CLI tool that generates shell commands based on natural la
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/shell-command-generator.git
+   git clone https://github.com/timkitch/ai-shell-command-generator
    cd shell-command-generator
    ```
 
