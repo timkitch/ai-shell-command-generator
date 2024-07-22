@@ -13,10 +13,10 @@ def verify_langchain_openai():
         chat_model = ChatOpenAI(model_name="gpt-4o-mini")
 
         # Test the model with a simple query
-        messages = [HumanMessage(content="Hello, GPT-4 Turbo via LangChain!")]
+        messages = [HumanMessage(content="Hello, GPT-4o mini via LangChain!")]
         response = chat_model(messages)
 
-        print("LangChain integration with GPT-4 Turbo successful")
+        print("LangChain integration with GPT-4o mini successful")
         print(f"Response: {response.content}")
     except Exception as e:
         print(f"Error testing LangChain integration with GPT-4o mini: {e}")
