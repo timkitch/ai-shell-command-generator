@@ -9,7 +9,7 @@ load_dotenv()
 
 def verify_langchain_openai():
     try:
-        # Initialize ChatOpenAI with GPT-4 Turbo
+        # Initialize ChatOpenAI with GPT-4o mini
         chat_model = ChatOpenAI(model_name="gpt-4o-mini")
 
         # Test the model with a simple query
@@ -51,7 +51,6 @@ def test_command_generation():
         ("powershell", "get current directory", "Get-Location"),
         ("cmd", "create a new directory named 'test'", "mkdir test"),
     ]
-    print("Note: The expected outputs are based on GPT-4 Turbo. Results may vary with gpt-4o-mini.")
     
     for shell, task, expected_output in test_cases:
         generated_command = get_shell_command(shell, task)
