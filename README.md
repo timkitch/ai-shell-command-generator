@@ -43,6 +43,13 @@ This application is a CLI tool that generates shell commands based on natural la
    - Copy `.env-example` to `.env`
    - Replace the placeholder API key in `.env` with your actual OpenAI API key
 
+5. Obtaining an OpenAI API key:
+   - Go to https://platform.openai.com/signup
+   - Create an account or sign in
+   - Navigate to the API keys section
+   - Generate a new API key
+   - Copy the key and paste it into your `.env` file
+
 ## Usage
 
 Run the application using the following command:
