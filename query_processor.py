@@ -16,36 +16,22 @@ def process_input(shell, task):
     if shell.lower() not in valid_shells:
         raise ValueError(f"Invalid shell. Please choose from {', '.join(valid_shells)}")
     
-    # Clean and validate task input
-    cleaned_task = clean_task_input(task)
-    if not cleaned_task:
+    # Process and validate task input
+    processed_task = clean_task_input(task)
+    if not processed_task:
         raise ValueError("Task description cannot be empty")
     
     return {
         "shell": shell.lower(),
-        "task": cleaned_task
+        "task": processed_task
     }
 
 import re
 
 def clean_task_input(task):
-    """Clean the task input while preserving quoted search terms and hyphens."""
-    # Remove leading/trailing whitespace
-    cleaned = task.strip()
-    
-    # Function to preserve content within quotes
-    def preserve_quoted(match):
-        return match.group(0)
-    
-    # Replace content within quotes temporarily
-    cleaned = re.sub(r'"[^"]*"', preserve_quoted, cleaned)
-    
-    # Clean the rest of the string, but preserve hyphens
-    cleaned = re.sub(r'[^a-zA-Z0-9\s"-]', '', cleaned)
-    
-    # Replace multiple spaces with a single space
-    cleaned = re.sub(r'\s+', ' ', cleaned)
-    
+    """Clean the task input while preserving special characters."""
+    # Remove leading/trailing whitespace and replace multiple spaces with a single space
+    cleaned = ' '.join(task.split())
     return cleaned
 
 def format_for_llm(processed_input):
