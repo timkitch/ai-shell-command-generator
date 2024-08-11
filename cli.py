@@ -71,5 +71,8 @@ def main():
         print(f"{Fore.RED}An error occurred while processing the query: {str(e)}{Style.RESET_ALL}")
         sys.exit(1)
 
+    # Add a "Thank you!" message after providing the LLM query
+    print(f"{Fore.GREEN}Thank you for your query! If you have more questions, feel free to ask.{Style.RESET_ALL}")
+
 if __name__ == "__main__":
     main()
