@@ -26,8 +26,6 @@ def process_input(shell, task):
         "task": processed_task
     }
 
-import re
-
 def clean_task_input(task):
     """Clean the task input while preserving special characters."""
     # Remove leading/trailing whitespace and replace multiple spaces with a single space
