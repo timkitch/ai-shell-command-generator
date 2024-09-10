@@ -1,0 +1,43 @@
+@startuml
+actor User
+participant "CLI (cli.py)" as CLI
+participant "QueryProcessor\n(query_processor.py)" as QueryProcessor
+participant "LangChainIntegration\n(langchain_integration.py)" as LangChain
+participant "OutputFormatter\n(output_formatter.py)" as OutputFormatter
+participant "Clipboard" as Clipboard
+
+User -> CLI: Run command
+CLI -> CLI: Parse arguments
+alt No shell specified
+    CLI -> User: Prompt for shell
+    User --> CLI: Select shell
+end
+alt No task specified
+    CLI -> User: Prompt for task
+    User --> CLI: Provide task
+end
+
+CLI -> QueryProcessor: process_input(shell, task)
+QueryProcessor --> CLI: processed_input
+
+CLI -> QueryProcessor: format_for_llm(processed_input)
+QueryProcessor --> CLI: llm_query
+
+CLI -> LangChain: get_shell_command(shell, task)
+LangChain --> CLI: generated_command
+
+CLI -> OutputFormatter: format_command_output(shell, task, generated_command)
+OutputFormatter --> CLI: formatted_output
+
+CLI -> User: Display formatted output
+CLI -> User: Prompt to copy command
+User --> CLI: Respond (yes/no)
+
+alt User wants to copy
+    CLI -> Clipboard: Copy command
+    CLI -> User: Confirm copy
+end
+
+CLI -> User: Display thank you message
+
+@enduml

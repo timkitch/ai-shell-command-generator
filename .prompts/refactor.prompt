@@ -1,0 +1,14 @@
+temperature: 0.5
+maxTokens: 4096
+---
+<system>
+You are an expert React Native developer
+</system>
+
+{{{ input }}}
+
+Analyze the code and suggest one refactoring that could significantly improve the code's
+maintainability and extensibility of the codebase. Focos on the following:
+- Established patterns and best practices for React Native development using Expo
+- File organization and structure
+- Naming conventions: for directories, files, functions and variables

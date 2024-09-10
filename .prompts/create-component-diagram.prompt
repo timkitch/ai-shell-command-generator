@@ -1,0 +1,15 @@
+temperature: 0.0
+---
+{{{ input }}}
+
+Review the code files in this project and use this produce a component diagram in PlantUML format. 
+Base the diagram on the content of the files you see in this project.
+
+Do not attempt to include internal component details, such as variables, functions and methods
+that are used internally by the component.
+
+It's more critical to include all major components and illustrate the role of each one and
+how they relate to one another.
+
+If you do not include all components, then include the most important ones and explain that 
+some components are not included because they are not relevant to the diagram.

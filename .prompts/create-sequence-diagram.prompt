@@ -1,0 +1,19 @@
+temperature: 0.0
+---
+{{{ input }}}
+
+Review the code files in this project and use this produce a sequence diagram in PlantUML format. 
+Base the diagram on the content of the files you see in this project. 
+
+If the codebase is large and complex, with many possible paths through the code, provide a list of options
+for me to choose from before generating a diagram.
+
+If the main flow through the app is clear, just go ahead and generating a sequence diagram.
+
+It's more critical to include the major components and illustrate their interactions than to make
+the diagram too large and complex. When the full diagram would be too large, simply choose the most
+critical components in the diagram necessary to get the gist. When you omit steps or components in the
+sequence, just add a note to the digram that points this out.
+
+If you do not include all components, then include the most important ones and explain that 
+some components are not included because they are not relevant to the diagram.

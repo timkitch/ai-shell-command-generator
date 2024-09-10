@@ -1,0 +1,14 @@
+temperature: 0.0
+---
+{{{ input }}}
+
+Review the code files in this project and use this produce a README file in markdown format. 
+Base this on the content of the files you see in this project. Be sure to cover:
+
+Project overview - describes what the code does and what it can be used for
+
+Core technologies used and the roles of each
+
+Core components and how they relate to one another
+
+How to build and run this project
